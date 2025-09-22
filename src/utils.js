@@ -11,16 +11,14 @@ async function readJsonResultsFromFile(resultsFile) {
     if (err.code === 'ENOENT') {
       core.setFailed(`The results file '${resultsFile}' does not exist. No status check or PR comment will be created.`);
     } else {
-      core.setFailed(`An error occurred: ${err}. No status check or PR comment will be created.`)
+      core.setFailed(`An error occurred: ${err}. No status check or PR comment will be created.`);
     }
     return;
   }
   if (rawJson) {
     return JSON.parse(rawJson);
   }
-  core.info(
-    `The results file '${resultsFile}' does not contain any data. No status check or PR comment will be created.`
-  );
+  core.info(`The results file '${resultsFile}' does not contain any data. No status check or PR comment will be created.`);
 }
 
 function areThereAnyFailingTests(json) {

@@ -35415,7 +35415,7 @@ var require_cjs = __commonJS({
 var require_markup = __commonJS({
   'src/markup.js'(exports2, module2) {
     var core2 = require_core();
-    var { format, formatInTimeZone } = require_cjs();
+    var { format, toZonedTime } = require_cjs();
     var timezone = core2.getInput('timezone') || 'Etc/UTC';
     function getMarkupForJson2(results, reportName2) {
       return `# ${reportName2}
@@ -35436,7 +35436,7 @@ ${getFailedAndEmptyTestResultsMarkup(results)}`;
     }
     function formatDate(dateToFormat) {
       if (timezone && timezone.length > 0) {
-        let dateWithTimezone = formatInTimeZone(dateToFormat, timezone);
+        let dateWithTimezone = toZonedTime(dateToFormat, timezone);
         return `${format(dateWithTimezone, 'yyyy-MM-dd HH:mm:ss.SSS zzz', { timeZone: timezone })}`;
       } else {
         return format(dateToFormat, 'yyyy-MM-dd HH:mm:ss.SSS zzz');

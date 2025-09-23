@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const { format, formatInTimeZone } = require('date-fns-tz');
+const { format, toZonedTime } = require('date-fns-tz');
 const timezone = core.getInput('timezone') || 'Etc/UTC';
 
 function getMarkupForJson(results, reportName) {
@@ -25,7 +25,7 @@ function getBadge(results) {
 
 function formatDate(dateToFormat) {
   if (timezone && timezone.length > 0) {
-    let dateWithTimezone = formatInTimeZone(dateToFormat, timezone);
+    let dateWithTimezone = toZonedTime(dateToFormat, timezone);
     return `${format(dateWithTimezone, 'yyyy-MM-dd HH:mm:ss.SSS zzz', { timeZone: timezone })}`;
   } else {
     return format(dateToFormat, 'yyyy-MM-dd HH:mm:ss.SSS zzz');

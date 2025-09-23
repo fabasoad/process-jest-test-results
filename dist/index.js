@@ -35546,7 +35546,7 @@ There were no test results to report.
     }
     function getFailedTestMarkup(failedTest) {
       core2.debug(`Processing ${failedTest.fullName}`);
-      let failedMsg = failedTest.failureMessages.join('\n').replace(/^.*\u001b\[\d{1,2}m.*$/gi, '');
+      let failedMsg = failedTest.failureMessages.join('\n').replace(/\u001b\[\d{1,2}m/gi, '');
       return `<details>
   <summary>:x: ${failedTest.fullName}</summary>
   <table>
